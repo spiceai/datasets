@@ -2,8 +2,11 @@ name: uniswap_v2_pool_stats_detailed
 type: append
 migrations:
   - name: create_view
+    visibility: private
     acceleration:
-      column: block_number
+      type: 'raw'
+      columns:
+        - name: block_number
     sql: |
       CREATE VIEW uniswap_v2_pool_stats_detailed AS (
         select block_number, pool_address, token0_symbol, token1_symbol, reserve0, reserve1, price0, price1, total_supply_hex, token0_id, token1_id, block_timestamp_last
