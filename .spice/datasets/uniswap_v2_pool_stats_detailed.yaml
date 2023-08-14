@@ -8,7 +8,7 @@ migrations:
       columns:
         - name: block_number
     sql: |
-      CREATE VIEW uniswap_v2_pool_stats_detailed AS (
+      CREATE VIEW "@spiceai".datasets.uniswap_v2_pool_stats_detailed AS (
         select block_number, pool_address, token0_symbol, token1_symbol, reserve0, reserve1, price0, price1, total_supply_hex, token0_id, token1_id, block_timestamp_last
         from eth.uniswap_v2.pool_stats
         left join eth.uniswap_v2.pools on LOWER(pools.id) = LOWER(pool_stats.pool_address)
