@@ -2,7 +2,6 @@ name: uniswap_v2_pool_stats_detailed
 type: append
 migrations:
   - name: create_view
-    visibility: private
     acceleration:
       type: 'raw'
       columns:
