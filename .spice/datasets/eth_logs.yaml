@@ -1,0 +1,12 @@
+name: eth_logs
+type: append
+migrations:
+  - name: create_view
+    acceleration:
+      type: 'raw'
+      columns:
+        - name: block_number
+    sql: |
+      CREATE VIEW spiceai.datasets.eth_logs AS (
+        SELECT * from "@spiceai".datalake.eth_logs
+      )
