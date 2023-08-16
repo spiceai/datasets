@@ -1,4 +1,4 @@
-name: spiceai.datasets.uniswap_v2_pool_stats_detailed
+name: uniswap_v2_pool_stats_detailed
 type: append
 migrations:
   - name: create_view
