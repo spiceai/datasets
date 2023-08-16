@@ -1,0 +1,8 @@
+name: btc_wbtc_custodian_addresses
+type: overwrite
+migrations:
+- name: btc_wbtc_custodian_addresses
+  sql: |-
+    CREATE OR REPLACE VIEW spiceai.accelerations.btc_wbtc_custodian_addresses (SELECT flatten(wbtc_custodian_addresses) AS wbtc_custodian_addresses
+    FROM mldataplatformzrs.btc."wbtc_custodian_addresses_20220720.json"
+    )

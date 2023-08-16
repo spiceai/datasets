@@ -1,0 +1,11 @@
+name: btc_transaction_inputs
+type: overwrite
+migrations:
+- name: btc_transaction_inputs
+  sql: |-
+    CREATE OR REPLACE VIEW spiceai.accelerations.btc_transaction_inputs (SELECT transaction_hash, index, spent_transaction_hash, spent_output_index, script_asm, script_hex, sequence, addresses, "value", block_number, block_hash, block_timestamp
+    FROM internal.btc.postgres.transaction_inputs
+    UNION ALL
+    SELECT transaction_hash, index, spent_transaction_hash, spent_output_index, script_asm, script_hex, sequence, addresses, "value", block_number, block_hash, block_timestamp
+    FROM cached.ethdatalake.btc.transaction_inputs
+    )

@@ -1,0 +1,11 @@
+name: btc_transactions
+type: overwrite
+migrations:
+- name: btc_transactions
+  sql: |-
+    CREATE OR REPLACE VIEW spiceai.accelerations.btc_transactions (SELECT hash, size, virtual_size, version, lock_time, block_hash, block_number, block_timestamp, input_count, output_count, input_value, output_value, is_coinbase, fee
+    FROM backfillpostgres.public.btc_transactions
+    UNION ALL
+    SELECT hash, size, virtual_size, version, lock_time, block_hash, block_number, block_timestamp, input_count, output_count, input_value, output_value, is_coinbase, fee
+    FROM cached.ethdatalake.btc.transactions
+    )
