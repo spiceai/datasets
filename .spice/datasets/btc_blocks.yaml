@@ -1,0 +1,11 @@
+name: btc_blocks
+type: overwrite
+migrations:
+- name: btc_blocks
+  sql: |-
+    CREATE OR REPLACE VIEW "@spiceai".datasets.btc_blocks AS (SELECT number, hash, size, stripped_size, weight, version, merkle_root, "timestamp", nonce, bits, coinbase_param, transaction_count
+    FROM backfillpostgres.public.btc_blocks
+    UNION ALL
+    SELECT number, hash, size, stripped_size, weight, version, merkle_root, "timestamp", nonce, bits, coinbase_param, transaction_count
+    FROM "@spiceai".accelerations.btc_blocks
+    )
