@@ -3,7 +3,7 @@ type: overwrite
 migrations:
 - name: btc_recent_transaction_inputs
   sql: |-
-    CREATE OR REPLACE VIEW "@spiceai".datasets.btc_recent_transaction_inputs AS (SELECT transaction_hash, index, spent_transaction_hash, spent_output_index, script_asm, script_hex, sequence, addresses, "value", block_number, block_hash, block_timestamp
+    CREATE OR REPLACE VIEW spiceai.datasets.btc_recent_transaction_inputs AS (SELECT transaction_hash, index, spent_transaction_hash, spent_output_index, script_asm, script_hex, sequence, addresses, "value", block_number, block_hash, block_timestamp
     FROM internal.btc.postgres.transaction_inputs
     WHERE "block_timestamp" > UNIX_TIMESTAMP()-30*60 -- Blocks from 30 minutes ago, ~3 blocks
     ORDER BY block_number DESC

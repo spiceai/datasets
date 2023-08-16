@@ -3,7 +3,7 @@ type: overwrite
 migrations:
 - name: internal_btc_postgres_transaction_outputs
   sql: |-
-    CREATE OR REPLACE VIEW "@spiceai".datasets.internal_btc_postgres_transaction_outputs AS (SELECT transaction_hash,
+    CREATE OR REPLACE VIEW spiceai.datasets.internal_btc_postgres_transaction_outputs AS (SELECT transaction_hash,
        index,
        script_asm,
        script_hex,
