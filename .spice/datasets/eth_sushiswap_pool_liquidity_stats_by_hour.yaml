@@ -3,7 +3,7 @@ access:
   - "*"
 migrations:
   - name: create_view
-    sql: |-
+    sql: |
       create view spiceai.datasets.eth_sushiswap_pool_liquidity_stats_by_hour as (
         select "hour", pool_address, token0_symbol, token1_symbol,
         min(reserve0) as reserve0_min,
