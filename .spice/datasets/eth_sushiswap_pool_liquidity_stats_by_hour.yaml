@@ -1,4 +1,4 @@
-name: eth.sushiswap.pool_liquidity_stats_by_hour
+name: eth_sushiswap_pool_liquidity_stats_by_hour
 access:
   - "*"
 migrations:
