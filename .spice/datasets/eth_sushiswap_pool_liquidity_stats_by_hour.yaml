@@ -15,6 +15,6 @@ migrations:
       max(price0) as price0_max,
       avg(price0) as price0_avg
       from (select pool_address, token0_symbol, token1_symbol, DATE_TRUNC('hour', to_timestamp(block_timestamp_last)) as "hour", reserve0, reserve1, price0
-          from pool_stats_detailed)
+          from eth.sushiswap.pool_stats_detailed)
       group by "hour", pool_address, token0_symbol, token1_symbol
       order by "hour" desc, pool_address  
