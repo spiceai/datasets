@@ -1,6 +1,8 @@
 name: eth_uniswap_v2_pool_liquidity_stats_by_hour
+type: append
 access:
-  - '*'
+  read:
+    - '*'
 migrations:
   - name: create_view
     sql: |
