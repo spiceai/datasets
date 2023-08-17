@@ -1,6 +1,7 @@
 name: eth_sushiswap_pool_liquidity_stats_by_hour
 access:
-  - "*"
+  read:
+    - "*"
 migrations:
   - name: create_view
     sql: |
