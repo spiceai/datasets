@@ -1,5 +1,6 @@
 name: eth.sushiswap.pool_liquidity_stats_by_hour
-type: overwrite
+access:
+  - "*"
 migrations:
   - name: eth.sushiswap.pool_liquidity_stats_by_hour
     sql: |-
