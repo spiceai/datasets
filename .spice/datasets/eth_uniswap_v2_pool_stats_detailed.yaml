@@ -18,6 +18,6 @@ migrations:
           token1_id, 
           block_timestamp_last 
         FROM eth.uniswap_v2.pool_stats
-          LEFT JOIN pools
+          LEFT JOIN eth.uniswap_v2.pools
             ON Lower(pools.id) = Lower(pool_stats.pool_address) 
         )
