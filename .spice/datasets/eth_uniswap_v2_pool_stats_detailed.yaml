@@ -1,0 +1,23 @@
+name: eth_uniswap_v2_pool_stats_detailed
+access:
+  - "*"
+migrations:
+  - name: create_view
+    sql: |-
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_uniswap_v2_pool_stats_detailed as (
+        SELECT block_number, 
+          pool_address, 
+          token0_symbol, 
+          token1_symbol, 
+          reserve0, 
+          reserve1, 
+          price0, 
+          price1, 
+          total_supply_hex, 
+          token0_id, 
+          token1_id, 
+          block_timestamp_last 
+        FROM eth.uniswap_v2.pool_stats
+          LEFT JOIN pools
+            ON Lower(pools.id) = Lower(pool_stats.pool_address) 
+        )
