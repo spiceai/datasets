@@ -20,4 +20,4 @@ migrations:
             from eth.sushiswap.pool_stats_detailed)
         group by "hour", pool_address, token0_symbol, token1_symbol
         order by "hour" desc, pool_address  
-    )
+      )
