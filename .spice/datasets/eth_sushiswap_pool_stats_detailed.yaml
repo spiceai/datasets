@@ -1,4 +1,7 @@
 name: eth_sushiswap_pool_stats_detailed
+access:
+  read:
+    - '*'
 type: append
 migrations:
   - name: create_view
