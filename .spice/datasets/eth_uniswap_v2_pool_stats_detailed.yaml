@@ -1,6 +1,7 @@
 name: eth_uniswap_v2_pool_stats_detailed
 access:
-  - "*"
+  read:
+    - '*'
 type: append  
 migrations:
   - name: create_view
