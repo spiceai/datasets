@@ -1,6 +1,8 @@
-eth.sushiswap.pool_liquidity_stats_by_hour:
-  path: eth.sushiswap.pool_liquidity_stats_by_hour
-  sql: |
+name: eth.sushiswap.pool_liquidity_stats_by_hour
+type: overwrite
+migrations:
+- name: eth.sushiswap.pool_liquidity_stats_by_hour
+  sql: |-
     select "hour", pool_address, token0_symbol, token1_symbol,
     min(reserve0) as reserve0_min,
     max(reserve0) as reserve0_max,
@@ -14,21 +16,4 @@ eth.sushiswap.pool_liquidity_stats_by_hour:
     from (select pool_address, token0_symbol, token1_symbol, DATE_TRUNC('hour', to_timestamp(block_timestamp_last)) as "hour", reserve0, reserve1, price0
         from pool_stats_detailed)
     group by "hour", pool_address, token0_symbol, token1_symbol
-    order by "hour" desc, pool_address
-  sql_context: ['eth', 'sushiswap']
-  roles:
-    - public
-    - free
-    - pro
-    - preview
-  reflections:
-    - name: Raw Reflection
-      type: RAW
-      enabled: true
-      display_fields:
-        - '*'
-      sort_fields:
-        - hour
-  environment:
-    - prod
-    - dev
+    order by "hour" desc, pool_address  
