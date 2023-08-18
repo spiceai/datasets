@@ -1,0 +1,29 @@
+name: spiceai.datasets.eth_aave_v2_collateral_updates
+description: Collateral updates for Aave V2 loan positions
+enabled: true
+type: blockchain
+access:
+  read:
+    - '*'
+migrations:
+  - name: create_table
+    sql: |
+      CREATE TABLE IF NOT EXISTS spiceai.datasets.eth_aave_v2_collateral_updates
+      (
+        lending_pool_address text NOT NULL,
+        user_address text NOT NULL,
+        asset_address text NOT NULL,
+        amount_wei text NOT NULL,
+        asset_decimals int NOT NULL,
+        liquidation_threshold int NOT NULL,
+        liquidation_bonus int NOT NULL,
+        block_number bigint NOT NULL,
+        block_timestamp bigint NOT NULL,
+        block_hash char(66) NOT NULL,
+        transaction_hash char(66) NOT NULL,
+        CONSTRAINT eth_aave_v2_collaterals_pk_lending_pool_address_user_address_asset_address_block_hash PRIMARY KEY (lending_pool_address, user_address, asset_address, block_hash)
+      );
+properties:
+  chain: eth
+  block_column: block_hash
+  time_column: block_timestamp

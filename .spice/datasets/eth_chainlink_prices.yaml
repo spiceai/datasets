@@ -1,0 +1,25 @@
+name: spiceai.datasets.eth_chainlink_prices
+description: Chainlink oracle price updates
+enabled: true
+type: blockchain
+access:
+  read:
+    - '*'
+migrations:
+  - name: create_table
+    sql: |
+      CREATE TABLE IF NOT EXISTS spiceai.datasets.eth_chainlink_prices
+      (
+      	oracle_address text NOT NULL,
+        asset_address text NOT NULL,
+        price_wei text NOT NULL,
+        block_number bigint NOT NULL,
+        block_timestamp bigint NOT NULL,
+        block_hash text NOT NULL,
+        transaction_hash text NOT NULL,
+        CONSTRAINT eth_aave_v2_prices_pk_oracle_address_asset_address_block_hash PRIMARY KEY (oracle_address, asset_address, block_hash)
+      );
+properties:
+  chain: eth
+  block_column: block_hash
+  time_column: block_timestamp

@@ -1,0 +1,27 @@
+name: spiceai.datasets.eth_aave_v2_loan_updates
+description: Loan updates for Aave V2 loan positions
+enabled: true
+type: blockchain
+access:
+  read:
+    - '*'
+migrations:
+  - name: create_table
+    sql: |
+      CREATE TABLE IF NOT EXISTS spiceai.datasets.eth_aave_v2_loan_updates
+      (
+        lending_pool_address text NOT NULL,
+        user_address text NOT NULL,
+        asset_address text NOT NULL,
+        debt_wei text NOT NULL,
+        asset_decimals int NOT NULL,
+        block_number bigint NOT NULL,
+        block_timestamp bigint NOT NULL,
+        block_hash text NOT NULL,
+        transaction_hash text NOT NULL,
+        CONSTRAINT eth_aave_v2_loans_pk_lending_pool_address_user_address_asset_ad PRIMARY KEY (lending_pool_address, user_address, asset_address, block_hash)
+      );
+properties:
+  chain: eth
+  block_column: block_hash
+  time_column: block_timestamp
