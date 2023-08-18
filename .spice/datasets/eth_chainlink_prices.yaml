@@ -21,5 +21,6 @@ migrations:
       );
 properties:
   chain: eth
-  block_column: block_hash
+  block_number_column: block_number
+  block_hash_column: block_hash
   time_column: block_timestamp
