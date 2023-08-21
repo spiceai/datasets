@@ -1,0 +1,11 @@
+name: eth_aave_v2_lending_pool_logs
+type: append
+access:
+  read:
+    - '*'
+migrations:
+  - name: create_view
+    sql: |
+      create or replace view spiceai.datasets.eth_aave_v2_lending_pool_logs as (
+        select * from eth.logs where address = '0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9' -- Aave V2 Lending Pool
+      )
