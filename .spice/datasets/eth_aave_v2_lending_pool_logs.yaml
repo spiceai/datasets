@@ -1,8 +1,5 @@
 name: eth_aave_v2_lending_pool_logs
 type: append
-access:
-  read:
-    - '*'
 migrations:
   - name: create_view
     sql: |
