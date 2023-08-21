@@ -1,4 +1,4 @@
-name: eth_aave_v2_lending_pool_logs
+name: spiceai.datasets.eth_aave_v2_lending_pool_logs
 type: view
 migrations:
   - name: create_view
