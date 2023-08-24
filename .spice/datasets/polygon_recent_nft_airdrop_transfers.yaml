@@ -1,0 +1,9 @@
+name: spiceai.datasets.polygon_recent_nft_airdrop_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      SELECT nt.token_address, nt.token_id, t.from_address AS tx_from_address, t."value" AS tx_value, nt.from_address, nt.to_address, nt.transaction_hash, nt.block_number, nt.block_timestamp, nt.block_hash
+      FROM polygon.recent_nft_transfers AS nt
+        LEFT JOIN polygon.recent_transactions AS t ON nt.block_number = t.block_number AND nt.transaction_hash = t.hash
+      WHERE t."value" = 0 AND nt.block_timestamp > UNIX_TIMESTAMP()-30*60
