@@ -1,0 +1,12 @@
+name: prices
+type: append
+access:
+  read:
+    - "*"
+migrations:
+  - name: create_view
+    sql: |
+    -- Don't include `swap_route`
+    (select pair,exchange,price,timestamp_ms,trade_id,asset_id0,asset_id1 from icedatalake.prices.trades limit 10 )
+      union all 
+    (select pair,exchange,price,timestamp_ms,trade_id,asset_id0,asset_id1 from backfillpostgres.public.prices limit 10 )
