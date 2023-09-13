@@ -1,0 +1,11 @@
+name: spiceai.datasets.assets
+type: append
+access:
+  read:
+    - "*"
+migrations:
+  - name: create_view
+    sql: |
+    CREATE OR REPLACE VIEW spiceai.datasets.assets as (
+      SELECT asset_id, display_name, eth_address, polygon_address FROM ethpostgres.public.assets
+    )

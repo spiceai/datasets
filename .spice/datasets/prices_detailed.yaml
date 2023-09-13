@@ -1,0 +1,13 @@
+name: spiceai.datasets.prices_detailed
+type: append
+access:
+  read:
+    - "*"
+migrations:
+  - name: create_view
+    sql: |
+    CREATE OR REPLACE VIEW spiceai.datasets.prices_detailed AS (
+      (SELECT pair,price,timestamp_ms,trade_id,asset_id0,asset_id1,exchange,swap_route FROM icedatalake.prices.trades )
+        UNION ALL
+      (SELECT pair,price,timestamp_ms,trade_id,asset_id0,asset_id1,exchange,swap_route FROM backfillpostgres.public.prices )
+    )
