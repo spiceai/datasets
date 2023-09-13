@@ -7,7 +7,7 @@ migrations:
   - name: create_view
     sql: |
     CREATE OR REPLACE VIEW spiceai.datasets.prices AS (
-      (SELECT pair,price,timestamp_ms,trade_id,asset_id0,asset_id1 FROM icedatalake.prices.trades )
+      (SELECT pair,price,timestamp_ms,asset_id0,asset_id1 FROM icedatalake.prices.trades )
         UNION ALL
-      (SELECT pair,price,timestamp_ms,trade_id,asset_id0,asset_id1 FROM backfillpostgres.public.prices )
+      (SELECT pair,price,timestamp_ms,asset_id0,asset_id1 FROM backfillpostgres.public.prices )
     )
