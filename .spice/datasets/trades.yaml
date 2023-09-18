@@ -7,5 +7,5 @@ migrations:
   - name: create_view
     sql: |
     CREATE OR REPLACE VIEW spiceai.datasets.trades AS (
-      SELECT pair,price,timestamp_ms,asset_id0,asset_id1 FROM trades_detailed
+      SELECT pair,price,timestamp_ms,asset_id0,asset_id1 FROM prices.trades_detailed
     )
