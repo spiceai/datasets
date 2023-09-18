@@ -7,8 +7,6 @@ migrations:
   - name: create_view
     sql: |
     CREATE OR REPLACE VIEW spiceai.datasets.prices AS (
-      SELECT * FROM cached.icedatalake.prices."all"
-        UNION ALL
       SELECT 
         timestamp_minute as "timestamp",
         MAX(price) as high,
@@ -29,7 +27,7 @@ migrations:
             "timestamp_ms" as timestamp_unix_ms,
             price,
             pair
-            FROM backfillpostgres.public.prices
+            from spiceai.datasets.trades
         ) 
       )
       GROUP BY pair, timestamp_minute
