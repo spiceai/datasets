@@ -8,4 +8,4 @@ migrations:
           FROM eth.nft_transfers
       )
       SELECT token_address, token_id, to_address as "owner", block_timestamp, transaction_hash
-      FROM ranked_trades WHERE trade_rank = 
+      FROM ranked_trades WHERE trade_rank = 1
