@@ -3,11 +3,13 @@ type: view
 migrations:
   - name: create_view
     sql: |
-      WITH token_transfers_nft AS
-        (SELECT block_number, block_timestamp, block_hash, token_address, from_address, to_address, transaction_hash, token_id
-        FROM polygon.recent_token_transfers
-        WHERE token_standard = 'erc721' OR token_standard = 'erc1155')
-
-      SELECT token_address, ttn.from_address, ttn.to_address, transaction_hash, ttn.token_id, ttn.block_number, ttn.block_timestamp, ttn.block_hash
-      FROM token_transfers_nft as ttn
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_recent_nft_transfers AS (
+        WITH token_transfers_nft AS (
+          SELECT block_number, block_timestamp, block_hash, token_address, from_address, to_address, transaction_hash, token_id
+          FROM polygon.recent_token_transfers
+          WHERE token_standard = 'erc721' OR token_standard = 'erc1155'
+        )
+        SELECT token_address, ttn.from_address, ttn.to_address, transaction_hash, ttn.token_id, ttn.block_number, ttn.block_timestamp, ttn.block_hash
+        FROM token_transfers_nft as ttn
         INNER JOIN polygon.nft_contracts on polygon.nft_contracts.address = ttn.token_address
+      )

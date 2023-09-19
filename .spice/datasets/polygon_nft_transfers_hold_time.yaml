@@ -3,10 +3,12 @@ type: view
 migrations:
   - name: create_view
     sql: |
-      select polygon.nft_transfers.*,
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_nft_transfers_hold_time AS (
+        SELECT polygon.nft_transfers.*,
             (block_timestamp - (lag(block_timestamp, 1) OVER (
                   PARTITION BY token_address, token_id ORDER BY block_timestamp ASC))
             ) as hold_time_before_transfer_secs
-      from polygon.nft_transfers
-      -- this removes mint transactions
-      where polygon.nft_transfers.from_address != '0x0000000000000000000000000000000000000000'
+        from polygon.nft_transfers
+        -- this removes mint transactions
+        where polygon.nft_transfers.from_address != '0x0000000000000000000000000000000000000000'
+      )
