@@ -5,7 +5,7 @@ access:
     - "*"
 migrations:
   - name: create_view
-    sql: |
+    sql: |-
     CREATE OR REPLACE VIEW spiceai.datasets.prices AS (
       SELECT 
         timestamp_minute as "timestamp",
