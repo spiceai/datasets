@@ -3,10 +3,11 @@ type: view
 migrations:
   - name: create_view
     sql: |
-      WITH ranked_trades AS (
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_nft_owners AS (
+        WITH ranked_trades AS (
           SELECT token_address, token_id, to_address, block_timestamp, transaction_hash, ROW_NUMBER() OVER (PARTITION BY token_address, token_id ORDER BY block_number DESC) AS trade_rank
           FROM polygon.nft_transfers
+        )
+        SELECT token_address, token_id, to_address as "owner", block_timestamp, transaction_hash
+        FROM ranked_trades WHERE trade_rank = 1
       )
-
-      SELECT token_address, token_id, to_address as "owner", block_timestamp, transaction_hash
-      FROM ranked_trades WHERE trade_rank = 1
