@@ -6,30 +6,30 @@ access:
 migrations:
   - name: create_view
     sql: |
-    CREATE OR REPLACE VIEW spiceai.datasets.prices AS (
-      SELECT 
-        timestamp_minute as "timestamp",
-        MAX(price) as high,
-        MIN(price) as low,
-        MAX(opens) as "open",
-        MAX(closes) as "close",
-        pair
-      FROM (
-        SELECT
-            pair,
-            timestamp_minute,
-            price,
-            FIRST_VALUE(price) OVER (PARTITION BY timestamp_minute ORDER BY timestamp_unix_ms DESC) as closes,
-            FIRST_VALUE(price) OVER (PARTITION BY timestamp_minute ORDER BY timestamp_unix_ms ASC) as opens
+      CREATE OR REPLACE VIEW spiceai.datasets.prices AS (
+        SELECT 
+          timestamp_minute as "timestamp",
+          MAX(price) as high,
+          MIN(price) as low,
+          MAX(opens) as "open",
+          MAX(closes) as "close",
+          pair
         FROM (
-            SELECT
-            date_trunc('minute', to_timestamp("timestamp_ms" / 1000)) as timestamp_minute,
-            "timestamp_ms" as timestamp_unix_ms,
-            price,
-            pair
-            from spiceai.datasets.trades
-        ) 
+          SELECT
+              pair,
+              timestamp_minute,
+              price,
+              FIRST_VALUE(price) OVER (PARTITION BY timestamp_minute ORDER BY timestamp_unix_ms DESC) as closes,
+              FIRST_VALUE(price) OVER (PARTITION BY timestamp_minute ORDER BY timestamp_unix_ms ASC) as opens
+          FROM (
+              SELECT
+              date_trunc('minute', to_timestamp("timestamp_ms" / 1000)) as timestamp_minute,
+              "timestamp_ms" as timestamp_unix_ms,
+              price,
+              pair
+              from spiceai.datasets.trades
+          ) 
+        )
+        GROUP BY pair, timestamp_minute
+        ORDER BY pair, "timestamp" DESC
       )
-      GROUP BY pair, timestamp_minute
-      ORDER BY pair, "timestamp" DESC
-    )
