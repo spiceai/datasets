@@ -28,8 +28,8 @@ migrations:
               price,
               pair
               from spiceai.datasets.trades
-          ) 
-        )
+          ) as base_trades
+        ) as aggregated_trades
         GROUP BY pair, timestamp_minute
         ORDER BY pair, "timestamp" DESC
       )
