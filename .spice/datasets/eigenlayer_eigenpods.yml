@@ -1,0 +1,8 @@
+name: spiceai.datasets.eigenlayer_eigenpods
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_eigenpods AS (
+        SELECT * FROM eth.eigenlayer.eigenpods
+      )
