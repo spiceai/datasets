@@ -1,0 +1,8 @@
+name: spiceai.datasets.eigenlayer_withdrawal_router_balances
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_withdrawal_router_balances AS (
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_withdrawal_router_balances
+      )
