@@ -4,5 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_strategy_manager_deposits AS (
-        SELECT * FROM eth.eigenlayer.strategy_manager_deposits
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_strategy_manager_deposits
       )

@@ -4,9 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_eigenpod_validators AS (
-        SELECT *
-        FROM eth.beacon.validators val 
-        WHERE val.withdrawal_credentials IN (
-          select withdrawal_credential from spiceai.datasets.eigenlayer_eigenpods
-        )
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_eigenpod_validators
       )

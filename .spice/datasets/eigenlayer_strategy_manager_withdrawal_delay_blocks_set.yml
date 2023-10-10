@@ -4,5 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_strategy_manager_withdrawal_delay_blocks_set AS (
-        SELECT * FROM eth.eigenlayer.strategy_manager_withdrawal_delay_blocks_set
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_strategy_manager_withdrawal_delay_blocks_set
       )

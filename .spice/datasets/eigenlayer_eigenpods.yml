@@ -4,5 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_eigenpods AS (
-        SELECT * FROM eth.eigenlayer.eigenpods
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_eigenpods
       )

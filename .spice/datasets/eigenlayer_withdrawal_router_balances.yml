@@ -4,5 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.eigenlayer_withdrawal_router_balances AS (
-        SELECT * FROM eth.eigenlayer.withdrawal_router_balances
+        SELECT * FROM spiceai.datasets.internal_eigenlayer_withdrawal_router_balances
       )
