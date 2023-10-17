@@ -7,6 +7,6 @@ migrations:
         SELECT *
         FROM eth.beacon.validators val 
         WHERE val.withdrawal_credentials IN (
-          select withdrawal_credential from eth.eigenlayer.eigenpods
+          select withdrawal_credential from spiceai.datasets.internal_eigenlayer_eigenpods
         )
       )
