@@ -1,0 +1,10 @@
+name: spiceai.datasets.eth_erc721_tokens
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_erc721_tokens AS (
+        SELECT address, name, symbol, total_supply, block_number, block_timestamp, block_hash
+        FROM eth.tokens
+        WHERE is_erc721 = true
+      )
