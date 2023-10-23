@@ -1,0 +1,11 @@
+name: spiceai.datasets.goerli_erc721_tokens
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.goerli_erc721_tokens AS (
+        -- goerli.tokens_erc721
+        SELECT address, name, symbol, decimals, total_supply, block_number, block_timestamp, block_hash
+        FROM goerli.tokens
+        WHERE is_erc721 = true
+      )

@@ -1,0 +1,11 @@
+name: spiceai.datasets.eth_erc1155_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_erc1155_transfers AS (
+        -- eth.token_transfers_erc1155
+        SELECT token_address, operator, from_address, to_address, token_id, "value", value_hex, transaction_hash, log_index, block_timestamp, block_number, block_hash, batch_index
+        FROM eth.token_transfers
+        WHERE token_standard = 'erc1155'
+      )

@@ -1,0 +1,11 @@
+name: spiceai.datasets.polygon_erc20_tokens
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_erc20_tokens AS (
+        -- polygon.tokens_erc20
+        SELECT address, name, symbol, decimals, total_supply, block_number, block_timestamp, block_hash
+        FROM polygon.tokens
+        WHERE is_erc20 = true
+      )

@@ -1,0 +1,11 @@
+name: spiceai.datasets.goerli_erc1155_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.goerli_erc1155_transfers AS (
+        -- goerli.token_transfers_erc1155
+        SELECT token_address, from_address, to_address, "value", value_hex, transaction_hash, log_index, block_timestamp, block_number, block_hash
+        FROM goerli.token_transfers_spice
+        WHERE token_standard = 'erc1155'
+      )
