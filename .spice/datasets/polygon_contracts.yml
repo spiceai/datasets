@@ -12,7 +12,7 @@ migrations:
             COALESCE(erc20_confidence, 0) AS erc20_confidence,
             COALESCE(erc721_confidence, 0) AS erc721_confidence,
             COALESCE(erc1155_confidence, 0) AS erc1155_confidence
-        FROM spiceai.datasets_internal_polygon_contract_creations as cc   -- internal.polygon.contract_creations 
-        LEFT JOIN spiceai.datasets_internal_polygon_token_contracts as c  -- internal.polygon.token_contracts 
+        FROM spiceai.datasets.internal_polygon_contract_creations as cc   -- internal.polygon.contract_creations 
+        LEFT JOIN spiceai.datasets.internal_polygon_token_contracts as c  -- internal.polygon.token_contracts 
         ON cc.address = c.address
       )
