@@ -15,5 +15,4 @@ migrations:
         FROM spiceai.datasets.internal_goerli_contract_creations as cc  -- internal.goerli.contract_creations
         LEFT JOIN spiceai.datasets.internal_goerli_token_contracts as c -- internal.goerli.token_contracts
         ON cc.address = c.address
-
       )
