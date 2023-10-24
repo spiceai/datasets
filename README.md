@@ -1,12 +1,12 @@
 # Datasets
 
-[Spice AI](https://spice.ai/about-us) curated dataset definitions deployed to [Spice.xyz](https://spice.xyz).
+[Spice AI](https://spice.ai/about-us) curated dataset definitions deployed to [Spice.ai](https://spice.ai).
 
-🔥 Learn how to create your own at [dataset-and-views](https://docs.spice.xyz/portal/apps/datasets-and-views).
+🔥 Learn how to create your own at [dataset-and-views](https://docs.spice.ai/portal/apps/datasets-and-views).
 
 ## Documentation
 
-See [Datasets](https://docs.spice.xyz/getting-started/datasets) for the entire list and for full documentation.
+See [Datasets](https://docs.spice.ai/getting-started/datasets) for the entire list and for full documentation.
 
 ## Feedback
 
