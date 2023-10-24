@@ -1,0 +1,9 @@
+name: spiceai.datasets.eth_contracts
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_contracts AS (
+        -- eth.contracts
+        SELECT * FROM spiceai.datasets.internal_eth_contracts
+      )

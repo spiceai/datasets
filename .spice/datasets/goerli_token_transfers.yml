@@ -1,0 +1,9 @@
+name: spiceai.datasets.goerli_token_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.goerli_token_transfers AS (
+        --  goerli.token_transfers
+        SELECT * FROM spiceai.datasets.internal_goerli_token_transfers -- internal.goerli.token_transfers_spice
+      )
