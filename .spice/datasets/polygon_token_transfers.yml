@@ -1,0 +1,10 @@
+name: spiceai.datasets.polygon_token_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_token_transfers AS (
+        -- polygon.token_transfers
+        SELECT token_address, from_address, to_address, token_id, token_standard, CAST("value" as VARCHAR) as "value", value_hex, transaction_hash, log_index, block_timestamp, block_number, block_hash, batch_index
+        FROM spiceai.datasets.internal_polygon_token_transfers -- internal.polygon.token_transfers_spice
+      )

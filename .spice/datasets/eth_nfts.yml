@@ -1,0 +1,10 @@
+name: spiceai.datasets.eth_nfts
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_nfts AS (
+        -- eth.nfts
+        SELECT address, token_id, name, symbol, is_erc721, is_erc1155
+        FROM spiceai.datasets.internal_eth_nfts -- internal.nfts
+      )
