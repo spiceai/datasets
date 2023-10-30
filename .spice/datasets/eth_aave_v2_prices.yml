@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_aave_v2_prices
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_aave_v2_prices AS (
+        SELECT * FROM spiceai.datasets.internal_eth_aave_v2_prices
+      )

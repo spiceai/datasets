@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_uniswap_v3_event_increase_observation_cardinality_nexts
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_uniswap_v3_event_increase_observation_cardinality_nexts AS (
+        SELECT * FROM spiceai.datasets.internal_eth_uniswap_v3_event_increase_observation_cardinality_nexts
+      )

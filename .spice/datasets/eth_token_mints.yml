@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_token_mints
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_token_mints AS (
+        SELECT * FROM spiceai.datasets.internal_eth_token_mints
+      )
