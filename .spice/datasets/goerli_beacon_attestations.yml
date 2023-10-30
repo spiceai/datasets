@@ -1,0 +1,8 @@
+name: spiceai.datasets.goerli_beacon_attestations
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.goerli_beacon_attestations AS (
+        SELECT * FROM spiceai.datasets.internal_goerli_beacon_attestations
+      )

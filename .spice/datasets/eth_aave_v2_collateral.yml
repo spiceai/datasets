@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_aave_v2_collateral
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_aave_v2_collateral AS (
+        SELECT * FROM spiceai.datasets.internal_eth_aave_v2_collateral
+      )
