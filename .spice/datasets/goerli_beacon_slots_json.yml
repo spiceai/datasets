@@ -1,8 +1,0 @@
-name: spiceai.datasets.goerli_beacon_slots_json
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.goerli_beacon_slots_json AS (
-        SELECT * FROM spiceai.datasets.internal_goerli_beacon_slots_json
-      )

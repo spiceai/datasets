@@ -1,8 +1,0 @@
-name: spiceai.datasets.eth_beacon_slots_json
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.eth_beacon_slots_json AS (
-        SELECT * FROM spiceai.datasets.internal_eth_beacon_slots_json
-      )

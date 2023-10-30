@@ -1,8 +1,0 @@
-name: spiceai.datasets.queries_token_transfers_with_tx
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.queries_token_transfers_with_tx AS (
-        SELECT * FROM spiceai.datasets.internal_queries_token_transfers_with_tx
-      )
