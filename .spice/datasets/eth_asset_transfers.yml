@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_asset_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_asset_transfers AS (
+        SELECT * FROM spiceai.datasets.internal_eth_asset_transfers
+      )

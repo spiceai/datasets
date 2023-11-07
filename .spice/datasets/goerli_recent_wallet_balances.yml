@@ -1,0 +1,8 @@
+name: spiceai.datasets.goerli_recent_wallet_balances
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.goerli_recent_wallet_balances AS (
+        SELECT * FROM spiceai.datasets.internal_goerli_recent_wallet_balances
+      )
