@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_sushiswap_recent_event_burns
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_sushiswap_recent_event_burns AS (
+        SELECT * FROM spiceai.datasets.internal_eth_sushiswap_recent_event_burns
+      )

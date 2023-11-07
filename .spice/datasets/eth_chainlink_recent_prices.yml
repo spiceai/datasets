@@ -1,0 +1,8 @@
+name: spiceai.datasets.eth_chainlink_recent_prices
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.eth_chainlink_recent_prices AS (
+        SELECT * FROM spiceai.datasets.internal_eth_chainlink_recent_prices
+      )

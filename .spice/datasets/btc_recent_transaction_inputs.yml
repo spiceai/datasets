@@ -1,0 +1,8 @@
+name: spiceai.datasets.btc_recent_transaction_inputs
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.btc_recent_transaction_inputs AS (
+        SELECT * FROM spiceai.datasets.internal_btc_recent_transaction_inputs
+      )
