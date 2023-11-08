@@ -1,0 +1,8 @@
+name: spiceai.datasets.polygon_recent_token_mints_yml
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.polygon_recent_token_mints_yml AS (
+        SELECT * FROM spiceai.datasets.internal_polygon_recent_token_mints_yml
+      )
