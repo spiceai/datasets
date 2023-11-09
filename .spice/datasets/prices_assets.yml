@@ -1,0 +1,8 @@
+name: spiceai.datasets.prices_assets
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.prices_assets AS (
+        SELECT * FROM spiceai.datasets.internal_prices_assets
+      )
