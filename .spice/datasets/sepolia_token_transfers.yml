@@ -1,0 +1,9 @@
+name: spiceai.datasets.sepolia_token_transfers
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.sepolia_token_transfers AS (
+        --  sepolia.token_transfers
+        SELECT * FROM spiceai.datasets.internal_sepolia_token_transfers -- internal.sepolia.token_transfers_spice
+      )
