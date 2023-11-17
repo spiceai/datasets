@@ -1,8 +1,0 @@
-name: spiceai.datasets.sepolia_recent_wallet_token_balances
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.sepolia_recent_wallet_token_balances AS (
-        SELECT * FROM spiceai.datasets.internal_sepolia_recent_wallet_token_balances
-      )
