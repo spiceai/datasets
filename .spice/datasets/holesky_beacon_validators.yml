@@ -1,0 +1,8 @@
+name: spiceai.datasets.holesky_beacon_validators
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.holesky_beacon_validators AS (
+        SELECT * FROM spiceai.datasets.internal_holesky_beacon_validators
+      )
