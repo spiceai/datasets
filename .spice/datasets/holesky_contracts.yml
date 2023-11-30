@@ -4,5 +4,15 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.holesky_contracts AS (
-        SELECT * FROM spiceai.datasets.internal_holesky_contracts
+        -- holesky.contracts
+        SELECT cc.address, bytecode, function_sighashes, cc.block_number, cc.block_hash, cc.block_timestamp,
+          COALESCE(c.is_erc20, false) AS is_erc20,
+          COALESCE(c.is_erc721, false) AS is_erc721,
+          COALESCE(is_erc1155, false) AS is_erc1155,
+          COALESCE(erc20_confidence, 0) AS erc20_confidence,
+          COALESCE(erc721_confidence, 0) AS erc721_confidence,
+          COALESCE(erc1155_confidence, 0) AS erc1155_confidence
+        FROM spiceai.datasets.internal_holesky_contract_creations as cc
+        LEFT JOIN spiceai.datasets.internal_holesky_token_contracts as c
+        ON cc.address = c.address
       )
