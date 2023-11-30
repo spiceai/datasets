@@ -1,0 +1,8 @@
+name: spiceai.datasets.holesky_recent_blocks
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.holesky_recent_blocks AS (
+        SELECT * FROM spiceai.datasets.internal_holesky_recent_blocks
+      )
