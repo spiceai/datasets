@@ -1,8 +1,0 @@
-name: spiceai.datasets.sepolia_beacon_recent_voluntary_exits
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.sepolia_beacon_recent_voluntary_exits AS (
-        SELECT * FROM spiceai.datasets.internal_sepolia_beacon_recent_voluntary_exits
-      )
