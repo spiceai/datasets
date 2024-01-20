@@ -1,8 +1,0 @@
-name: spiceai.datasets.sepolia_beacon_bls_to_execution_changes
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.sepolia_beacon_bls_to_execution_changes AS (
-        SELECT * FROM spiceai.datasets.internal_sepolia_beacon_bls_to_execution_changes
-      )

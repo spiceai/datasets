@@ -1,8 +1,0 @@
-name: spiceai.datasets.sepolia_transactions
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.sepolia_transactions AS (
-        SELECT * FROM spiceai.datasets.internal_sepolia_transactions
-      )

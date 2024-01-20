@@ -1,8 +1,0 @@
-name: spiceai.datasets.polygon_recent_blocks
-type: view
-migrations:
-  - name: create_view
-    sql: |
-      CREATE OR REPLACE VIEW spiceai.datasets.polygon_recent_blocks AS (
-        SELECT * FROM spiceai.datasets.internal_polygon_recent_blocks
-      )
