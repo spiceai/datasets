@@ -4,5 +4,5 @@ migrations:
   - name: create_view
     sql: |
       CREATE OR REPLACE VIEW spiceai.datasets.smart_sample AS (
-        SELECT ts, serial_number, smart_9_raw, smart_12_raw, smart_194_raw, y FROM "failures_data.parquet"
+        SELECT ts, serial_number, smart_9_raw, smart_12_raw, smart_194_raw, y FROM testmluploads.samples."failures_data.parquet"
       )
