@@ -1,0 +1,8 @@
+name: spiceai.datasets.smart_failures
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.smart_failures AS (
+        SELECT ts, serial_number, smart_9_raw, smart_12_raw, smart_194_raw, life_percent FROM spiceai.datasets.internal_smart_failures
+      )
