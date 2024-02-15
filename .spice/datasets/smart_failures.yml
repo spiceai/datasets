@@ -1,5 +1,8 @@
 name: spiceai.datasets.smart_failures
 type: view
+access:
+  read:
+    - '*'
 migrations:
   - name: create_view
     sql: |
