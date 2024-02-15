@@ -1,0 +1,11 @@
+name: spiceai.datasets.smart_sample
+type: view
+migrations:
+  - name: create_view
+    sql: |
+      CREATE OR REPLACE VIEW spiceai.datasets.smart_sample AS (
+        SELECT
+            ts, smart_9_raw, smart_12_raw, smart_194_raw, y
+        FROM "failures_data.parquet"
+        WHERE serial_number='Z305BHVV'
+      )
