@@ -54,12 +54,14 @@ def lifespan_percentage(group):
         group["life_percentage"] = None
         return group
 
-    total_lifespan = (
-        group[group["failure"] == 1]["date"].iloc[0] - group["date"].iloc[0]
-    ).days
-    group["age"] = (group["date"] - group["date"].iloc[0]).dt.days
+    failure_date = group[group["failure"] == 1]["date"].iloc[0]
+    first_day = group["date"].iloc[0]
+
+    total_lifespan = (failure_date-first_day).days
+    group["age"] = (group["date"] - first_day).dt.days
     group["life_percentage"] = group["age"] / total_lifespan
-    return group.drop(columns=["age"])
+    return group[group["life_percentage"] <= 1.0].drop(columns=["age"])
+
 
 def convert_raw_parquet_to_failure_dataset(parquet_folder: str, output_parquet_filepath: str = "failures_data.parquet"):
     """ Convert a set of raw SMART parquet data into a dataset that tracks the duration of hard drives (keyed on 'serial_number'). 
@@ -73,20 +75,26 @@ def convert_raw_parquet_to_failure_dataset(parquet_folder: str, output_parquet_f
         - y: Percentage (as decimal, [0, 1.0]) of life of the hard drive. This represents a normalised
             value of the hard drive's life based on the first failure date. 
     """
-    df = pd.concat(pd.read_parquet(p) for p in glob.glob(os.path.join(parquet_folder, "parquet_data*.parquet")))
-    df["date"] = pd.to_datetime(df["date"])
+    df = pd.concat(pd.read_parquet(p) for p in glob.glob(os.path.join(parquet_folder, "parquet_data_*.parquet")))
+
+    # Handle two formats "%Y-%m-%d" and "%m/%d/%Y"
+    df["date2"] = pd.to_datetime(df["date"], errors='coerce')
+    mask = pd.isna(df["date2"])
+    df.loc[mask, "date2"] = pd.to_datetime(df.loc[mask, "date"], format="%m/%d/%Y", errors='coerce')
+    df["date"] = df["date2"]
+
     df = df.groupby("serial_number").apply(lifespan_percentage)
     df["date"] = (df["date"].astype("int64") / 1000000).astype("int64")
     df = df.rename(columns={"date": "ts", "life_percentage": "y"})
     df = df[["ts", "serial_number", "smart_9_raw", "smart_12_raw", "smart_194_raw", "y"]]
     df = df.reset_index(drop=True)
-    df[~df["y"].isnull()].to_parquet(output_parquet_filepath)
+    df[~df[["smart_9_raw", "smart_12_raw", "smart_194_raw", "y"]].isnull().any(axis=1)].to_parquet(output_parquet_filepath)
 
 def main():
     parser = argparse.ArgumentParser(description="Process data based on a range of years.")
     parser.add_argument("--min-year", type=int, required=False, help="Minimum year to process", default=2016)
     parser.add_argument("--max-year", type=int, required=False, help="Maximum year to process", default=2023)
-    parser.add_argument("--output_parquet", type=str, required=False, help="Maximum year to process", default="failures_data.parquet")
+    parser.add_argument("--output-parquet", type=str, required=False, help="Maximum year to process", default="failures_data.parquet")
 
     args = parser.parse_args()
     
